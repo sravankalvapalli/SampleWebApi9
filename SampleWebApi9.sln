@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{51B2CCD7-A5CF-41DB-A17A-C858C70E43DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\WebApi\WebApi.csproj", "{C4F8CE37-7AE7-4D95-9210-ACA8C0D4BC98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{1E2FCCFD-5F61-48E7-B1A4-E5CCCC3CDD2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{2CB5AD50-E915-46FE-8B77-0315EBFCC2B7}"
+	ProjectSection(SolutionItems) = preProject
+		deploy.yml = deploy.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4F8CE37-7AE7-4D95-9210-ACA8C0D4BC98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F8CE37-7AE7-4D95-9210-ACA8C0D4BC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F8CE37-7AE7-4D95-9210-ACA8C0D4BC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F8CE37-7AE7-4D95-9210-ACA8C0D4BC98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C4F8CE37-7AE7-4D95-9210-ACA8C0D4BC98} = {51B2CCD7-A5CF-41DB-A17A-C858C70E43DA}
+		{2CB5AD50-E915-46FE-8B77-0315EBFCC2B7} = {1E2FCCFD-5F61-48E7-B1A4-E5CCCC3CDD2C}
+	EndGlobalSection
+EndGlobal

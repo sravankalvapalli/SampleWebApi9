@@ -1,0 +1,39 @@
+name: CI/CD for .NET Core Web API
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Log in to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build and Push Docker Image
+      run: |
+        az acr login --name ${{ secrets.REGISTRY_NAME }}
+        docker build -t ${{ secrets.REGISTRY_NAME }}.azurecr.io/api-image:latest .
+        docker push ${{ secrets.REGISTRY_NAME }}.azurecr.io/api-image:latest
+
+    - name: Fetch Connection String from Key Vault
+      id: get-secret
+      run: |
+        CONNECTION_STRING=${{ secrets.CONNECTION_STRING }}
+        echo "Connection string fetched successfully."
+
+    - name: Deploy to Azure App Service
+      run: |
+        az webapp create --resource-group ${{ secrets.RESOURCE_GROUP }} --plan ${{ secrets.PLAN_NAME }} --name ${{ secrets.APP_NAME }} --deployment-container-image-name ${{ secrets.REGISTRY_NAME }}.azurecr.io/api-image:latest || exit 1
+        az webapp config appsettings set --name ${{ secrets.APP_NAME }} --resource-group ${{ secrets.RESOURCE_GROUP }} --settings "ConnectionStrings__DefaultConnection=${{ secrets.CONNECTION_STRING }}" "ConnectionStrings__Server=${{ secrets.SERVER }}" "ConnectionStrings__Database=${{ secrets.DATABASE }}" "ConnectionStrings__UserId=${{ secrets.USERID }}" "ConnectionStrings__Password=${{ secrets.PASSWORD }}"
