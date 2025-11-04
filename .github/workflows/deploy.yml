@@ -8,8 +8,8 @@ on:
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
-    
-    # 💥 ADD OR UPDATE THIS PERMISSIONS BLOCK 💥
+   
+ 
     permissions:
       contents: read
       packages: write  # <--- THIS IS CRITICAL
